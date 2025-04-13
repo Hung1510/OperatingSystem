@@ -1,0 +1,29 @@
+ -we have { 7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1 }
+
+ -with 3 frame a time
+
+step ;page referenced ; memory frames ;replacement
+total page fault : 12 
+
+1	7	[7 - -] (Page fault)
+2	0	[7 0 -] (Page fault)
+3	1	[7 0 1] (Page fault)
+4	2	[0 1 2] (LRU: Remove 7)
+5	0	[0 1 2] (No page fault)
+6	3	[1 2 3]	(LRU: Remove 0)
+7	0	[2 3 0] (LRU: Remove 1)
+8	4	[3 0 4]	(LRU: Remove 2)
+9	2	[0 4 2] (LRU: Remove 3)
+10	3	[4 2 3] (LRU: Remove 0)
+11	0	[2 3 0] (LRU: Remove 4)
+12	3	[2 3 0]	(No page fault)
+13	0	[2 3 0]	(No page fault)
+14	3	[2 3 0]	(No page fault)
+15	2	[2 3 0]	(No page fault)
+16	1	[3 0 1]	(LRU: Remove 2)
+17	2	[0 1 2]	(LRU: Remove 3)
+18	0	[0 1 2]	(No page fault)
+19	1	[0 1 2]	(No page fault)
+20	7	[1 2 7]	(LRU: Remove 0)
+21	0	[2 7 0]	(LRU: Remove 1)
+22	1	[7 0 1]	(LRU: Remove 2)
